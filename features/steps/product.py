@@ -16,8 +16,9 @@ def product_with_id_does_not_exist(context, product_id):
 	pass
 
 @given('the following create product payload')
+@given('the following update product payload')
 def save_create_product_payload(context):
-	context.product_data = json.loads(context.text)
+	context.product_data = context.text
 
 @when('create product')
 def create_product(context):

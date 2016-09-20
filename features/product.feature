@@ -14,27 +14,27 @@ Feature: Product API
 	#      When get product with id "2"
 	#      Then response status code should be "404"
 
-	Scenario: Create new product
-		Given the following create product payload
-	   			"""
-	   			{"name": "testing product", "description": "new product", "price": 100}
-	   			"""
-	     When create product
-	     Then response status code should be "200"
-	     Then response should contain key "id" 
-	      And response should contain key "name" with value "testing product"
-	      And response should contain key "description" with value "new product"
-	      And response should contain key "price" with value "100"
-
-	# Scenario: Update product with id that does not exist
-	#    Given: product with id 2 does not exist
-	#    	 And: the following update product payload
-	#    	 		"""	
-	#    			{name": "testing product"}
+	# Scenario: Create new product
+	# 	Given the following create product payload
 	#    			"""
-	#     When: update product with id 2
-	#     Then: response status code should be "404"
-	
+	#    			{"name": "testing product", "description": "new product", "price": 100}
+	#    			"""
+	#      When create product
+	#      Then response status code should be "200"
+	#      Then response should contain key "id" 
+	#       And response should contain key "name" with value "testing product"
+	#       And response should contain key "description" with value "new product"
+	#       And response should contain key "price" with value "100"
+
+	Scenario: Update product with id that does not exist
+		Given product with id "2" does not exist
+	   	  And the following update product payload
+	   	 		"""	
+	   				{name": "testing product"}
+	   			"""
+	     When update product with id "2"
+	     Then response status code should be "404"
+	 
 	# Scenario: Update product price to negative value
 	#    Given: product with id 1 exist
 	#    	 And: the following update product payload

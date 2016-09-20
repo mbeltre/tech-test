@@ -10,13 +10,11 @@ class Client(object):
 		r = requests.get(path)
 		return (r.status_code, r.text)
 
-	def create_product(self, json):
-		print("json")
-		print(json)
-		r = requests.post(self.url, data=json)
+	def create_product(self, data):
+		r = requests.post(self.url, data=data)
 		return (r.status_code, r.text)
 
-	def update_product(self, product_id, product_json):
+	def update_product(self, product_id, data):
 		path =  self.url + "/" + str(product_id)
-		r = requests.patch(path, data=product_json)
+		r = requests.patch(path, data=data)
 		return (r.status_code, r.text)
