@@ -22,12 +22,19 @@ def save_create_product_payload(context):
 
 @when('create product')
 def create_product(context):
-	print(context.product_data)
 	context.response = context.api_client.create_product(context.product_data)
+
+@when('update product with id "{product_id}"')
+def update_product_with_id(context, product_id):
+	context.response = context.api_client.update_product(product_id, context.product_data)
 
 @when('get product with id "{product_id}"')
 def get_product_with_id(context, product_id):
 	context.response = context.api_client.get_product(product_id)
+
+@when('delete product with id "{product_id}"')
+def delete_product(context, product_id):
+	context.response = context.api_client.delete_product(product_id)
 
 @then('response should contain key "{key}" with value "{value}"')
 def response_should_contain_key_value(context, key, value):

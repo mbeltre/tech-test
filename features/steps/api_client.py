@@ -1,4 +1,5 @@
 import requests
+import json
 
 class Client(object):
 
@@ -11,10 +12,17 @@ class Client(object):
 		return (r.status_code, r.text)
 
 	def create_product(self, data):
-		r = requests.post(self.url, data=data)
+		headers={"Content-Type":"application/x-www-form-urlencoded"}
+		r = requests.post(self.url, data={"json_data":data}, headers=headers)
 		return (r.status_code, r.text)
 
 	def update_product(self, product_id, data):
 		path =  self.url + "/" + str(product_id)
-		r = requests.patch(path, data=data)
+		headers={"Content-Type":"application/x-www-form-urlencoded"}
+		r = requests.patch(path, data={"json_data":data}, headers=headers)
+		return (r.status_code, r.text)
+
+	def delete_product(self, product_id):
+		path =  self.url + "/" + str(product_id)
+		r = requests.delete(path)
 		return (r.status_code, r.text)
